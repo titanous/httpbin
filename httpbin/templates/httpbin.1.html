@@ -1,6 +1,5 @@
 <div class='mp'>
-<h1>httpbin(1): HTTP Request &amp; Response Service</h1>
-<p>Freely hosted in <a href="http://httpbin.org">HTTP</a>, <a href="https://httpbin.org">HTTPS</a>, <a href="https://http2bin.org">HTTP/2</a> &amp; <a href="http://eu.httpbin.org/">EU</a> flavors by <a href="https://www.runscope.com/">Runscope</a></p>
+<h1>misbehaving.site(1): a less well-behaved version of <a href="https://httpbin.org">httpbin</a></h1>
 
 <h2 id="ENDPOINTS">ENDPOINTS</h2>
 
@@ -70,17 +69,17 @@
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
 
-<h3 id="-curl-http-httpbin-org-ip">$ curl http://httpbin.org/ip</h3>
+<h3 id="-curl-http-httpbin-org-ip">$ curl http://misbehaving.site/ip</h3>
 
 <pre><code>{"origin": "24.127.96.129"}
 </code></pre>
 
-<h3 id="-curl-http-httpbin-org-user-agent">$ curl http://httpbin.org/user-agent</h3>
+<h3 id="-curl-http-httpbin-org-user-agent">$ curl http://misbehaving.site/user-agent</h3>
 
 <pre><code>{"user-agent": "curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8l zlib/1.2.3"}
 </code></pre>
 
-<h3 id="-curl-http-httpbin-org-get">$ curl http://httpbin.org/get</h3>
+<h3 id="-curl-http-httpbin-org-get">$ curl http://misbehaving.site/get</h3>
 
 <pre><code>{
    "args": {},
@@ -89,7 +88,7 @@
       "Connection": "close",
       "Content-Length": "",
       "Content-Type": "",
-      "Host": "httpbin.org",
+      "Host": "misbehaving.site",
       "User-Agent": "curl/7.19.7 (universal-apple-darwin10.0) libcurl/7.19.7 OpenSSL/0.9.8l zlib/1.2.3"
    },
    "origin": "24.127.96.129",
@@ -97,7 +96,7 @@
 }
 </code></pre>
 
-<h3 id="-curl-I-http-httpbin-org-status-418">$ curl -I http://httpbin.org/status/418</h3>
+<h3 id="-curl-I-http-httpbin-org-status-418">$ curl -I http://misbehaving.site/status/418</h3>
 
 <pre><code>HTTP/1.1 418 I'M A TEAPOT
 Server: nginx/0.7.67
@@ -107,7 +106,7 @@ x-more-info: http://tools.ietf.org/html/rfc2324
 Content-Length: 135
 </code></pre>
 
-<h3 id="-curl-https-httpbin-org-get-show_env-1">$ curl https://httpbin.org/get?show_env=1</h3>
+<h3 id="-curl-https-httpbin-org-get-show_env-1">$ curl https://misbehaving.site/get?show_env=1</h3>
 
 <pre><code>{
   "headers": {
@@ -130,7 +129,7 @@ Content-Length: 135
     "show_env": "1"
   },
   "origin": "109.60.101.240",
-  "url": "http://httpbin.org/get?show_env=1"
+  "url": "http://misbehaving.site/get?show_env=1"
 }
 </code></pre>
 
@@ -145,6 +144,7 @@ $ gunicorn httpbin:app
 <h2 id="Changelog">Changelog</h2>
 
 <ul>
+<li>0.3.0: First version of misbehaving.site</li>
 <li>0.2.0: Added an XML endpoint.  Also fixes several bugs with unicode, CORS headers, digest auth, and more.</li>
 <li>0.1.2: Fix a couple Python3 bugs with the random byte endpoints, fix a bug when uploading files without a Content-Type header set.</li>
 <li>0.1.1: Added templates as data in setup.py</li>
