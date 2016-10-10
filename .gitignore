@@ -3,6 +3,7 @@ build/
 dist/
 .workon
 .epio-app
+.idea
 *.pyc
 .tox
 *.egg-info

@@ -706,6 +706,123 @@ def image_svg():
     return Response(data, headers={'Content-Type': 'image/svg+xml'})
 
 
+@app.route('/misbehaving/bells/<int:n>')
+def misbehaving_bells(n):
+    assert n > 0
+
+    response = make_response(jsonify({'X-Bells': '\x07' * n}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Bells'] = '\x07' * n
+
+    return response
+
+
+@app.route('/misbehaving/colorized-headers')
+def misbehaving_colorized_headers():
+    """A bunch of color coded headers that may screw up your terminal"""
+    foreground_colors = {
+        'Grey': '\033[30m',
+        'Red': '\033[31m',
+        'Green': '\033[32m',
+        'Yellow': '\033[33m',
+        'Blue': '\033[34m',
+        'Magenta': '\033[35m',
+        'Cyan': '\033[36m',
+        'White': '\033[37m',
+    }
+
+    background_colors = {
+        'Grey': '\033[40m',
+        'Red': '\033[41m',
+        'Green': '\033[42m',
+        'Yellow': '\033[43m',
+        'Blue': '\033[44m',
+        'Magenta': '\033[45m',
+        'Cyan': '\033[46m',
+        'White': '\033[47m',
+    }
+
+    styles = {
+        'Plain': '',
+        'Bolded': '\033[1m',
+        'Darkened': '\033[2m',
+        'Underlined': '\033[4m',
+        'Blinking': '\033[5m',
+        'Reversed': '\033[7m',
+        'Concealed': '\033[8m',
+    }
+
+    end_code = '\033[0m'
+
+    color_headers = {}
+
+    for fcolor, fcode in sorted(foreground_colors.items()):
+        for bcolor, bcode in sorted(background_colors.items()):
+            print(bcolor, bcode)
+            for sstyle, scode in sorted(styles.items()):
+                color_headers['X-' + fcolor + '-On-' + bcolor + '-' + sstyle] = \
+                    fcode + bcode + scode + fcolor + '-On-' + bcolor + '-' + sstyle + end_code
+
+    response = make_response(jsonify(color_headers))
+    response.headers['Content-Type'] = 'application/json'
+
+    response.headers.extend(color_headers)
+
+    return response
+
+
+@app.route('/misbehaving/long-header/<int:n>')
+def misbehaving_long_header(n):
+    """Return an extremely long header of X bytes"""
+    assert n > 0
+
+    response = make_response(jsonify({'X-Long-Header': 'n' * n}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Null-Byte'] = 'n' * n
+
+    return response
+
+
+@app.route('/misbehaving/null-byte')
+def misbehaving_null_byte():
+    """Contains an X-Null-Byte header with a null byte inside it"""
+    response = make_response(jsonify({'X-Null-Byte': 'null\x00byte'}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Null-Byte'] = 'null\x00byte'
+
+    return response
+
+
+@app.route('/misbehaving/redirect-loop/<int:n>')
+def misbehaving_redirect_loop(n):
+    """Redirect in perpetuity.  Unlike redirect_n_times, it counts upwards so that you can see where the UA stops"""
+    assert n > -1
+
+    return redirect('/misbehaving/redirect-loop/' + str(n + 1))
+
+
+@app.route('/misbehaving/timeout')
+def misbehaving_timeout():
+    return delay_response(pow(2, 32))
+
+
+
+@app.route('/misbehaving/too-many-headers/<int:n>')
+def misbehaving_too_many_headers(n):
+    """Creates a response with N X-Headers"""
+    assert n > 0
+
+    data = {'X-Header-' + str(n) : str(n) for n in range(1, n + 1)}
+
+    response = make_response(jsonify(data))
+    response.headers.extend(data)
+
+    return response
+
+
 def resource(filename):
     path = os.path.join(
         tmpl_dir,
