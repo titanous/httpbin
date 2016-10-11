@@ -828,7 +828,7 @@ def misbehaving_redirect_loop(n):
     """Redirect in perpetuity.  Unlike redirect_n_times, it counts upwards so that you can see where the UA stops"""
     assert n > -1
 
-    return redirect('/misbehaving/redirect-loop/' + str(n + 1))
+    return redirect('/redirect-loop/' + str(n + 1))
 
 
 @app.route('/timeout')
