@@ -706,7 +706,7 @@ def image_svg():
     return Response(data, headers={'Content-Type': 'image/svg+xml'})
 
 
-@app.route('/misbehaving/bells/<int:n>')
+@app.route('/bells/<int:n>')
 def misbehaving_bells(n):
     assert n > 0
 
@@ -718,7 +718,7 @@ def misbehaving_bells(n):
     return response
 
 
-@app.route('/misbehaving/colorized-headers')
+@app.route('/colorized-headers')
 def misbehaving_colorized_headers():
     """A bunch of color coded headers that may screw up your terminal"""
     foreground_colors = {
