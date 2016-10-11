@@ -719,7 +719,7 @@ def misbehaving_bells(n):
 
 
 @app.route('/color-headers')
-def misbehaving_colorized_headers():
+def misbehaving_color_headers():
     """A bunch of color coded headers that may screw up your terminal"""
     foreground_colors = {
         'Grey': '\033[30m',
