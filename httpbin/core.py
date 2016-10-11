@@ -759,7 +759,6 @@ def misbehaving_color_headers():
 
     for fcolor, fcode in sorted(foreground_colors.items()):
         for bcolor, bcode in sorted(background_colors.items()):
-            print(bcolor, bcode)
             for sstyle, scode in sorted(styles.items()):
                 color_headers['X-' + fcolor + '-On-' + bcolor + '-' + sstyle] = \
                     fcode + bcode + scode + fcolor + '-On-' + bcolor + '-' + sstyle + end_code
@@ -842,6 +841,21 @@ def misbehaving_redirect_loop(n):
     assert n > -1
 
     return redirect('/redirect-loop/' + str(n + 1))
+
+
+@app.route('/terminal-title/<string:title>')
+def misbehaving_terminal_title(title):
+    """Returns a content length of n bytes"""
+    assert len(title) > 0
+
+    title = '\033]0;' + title + '\007'
+
+    response = make_response(jsonify({'X-Terminal-Title': title}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Terminal-Title'] = title
+
+    return response
 
 
 @app.route('/timeout')
