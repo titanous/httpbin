@@ -772,6 +772,22 @@ def misbehaving_color_headers():
     return response
 
 
+@app.route('/control-characters')
+def misbehaving_control_characters():
+    """All the control characters"""
+    chars = [ chr(i) for i in range(0, 32) ]
+    chars.remove('\n')
+    chars.remove('\r')
+    chars = ''.join(chars)
+
+    response = make_response(jsonify({'X-Control-Characters': chars}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Control-Characters'] = chars
+
+    return response
+
+
 @app.route('/emoji')
 def misbehaving_emoji():
     """Return an extremely long header of X bytes"""
