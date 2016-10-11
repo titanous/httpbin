@@ -772,6 +772,19 @@ def misbehaving_color_headers():
     return response
 
 
+@app.route('/content-length/<int:n>')
+def misbehaving_content_length(n):
+    """Returns a content length of n bytes"""
+    assert n > -1
+
+    response = make_response(jsonify({'Content-Length': n}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Content-Length'] = n
+
+    return response
+
+
 @app.route('/control-characters')
 def misbehaving_control_characters():
     """All the control characters"""
