@@ -5,7 +5,7 @@
 
 <ul>
 <li class="misbehaving"><a href="{{ url_for('misbehaving_bells', n=5) }}"><code>/bells/:n</code></a> Sends n bells to your terminal</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_colorized_headers') }}" data-bare-link="true"><code>/colorized-headers</code></a> HTTP headers with terminal color codes</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_color_headers') }}" data-bare-link="true"><code>/colorized-headers</code></a> HTTP headers with terminal color codes</li>
 <li class="misbehaving"><a href="{{ url_for('misbehaving_emoji') }}" data-bare-link="true"><code>/emoji</code></a> HTTP header with a delightful emoji</li>
 <li class="misbehaving"><a href="{{ url_for('misbehaving_long_header', n=262144) }}"><code>/long-header/:n</code></a> Returns an excessively header of n bytes</li>
 <li class="misbehaving"><a href="{{ url_for('misbehaving_null_byte') }}" data-bare-link="true"><code>/null-byte</code></a> HTTP header with a null byte</li>

@@ -718,7 +718,7 @@ def misbehaving_bells(n):
     return response
 
 
-@app.route('/colorized-headers')
+@app.route('/color-headers')
 def misbehaving_colorized_headers():
     """A bunch of color coded headers that may screw up your terminal"""
     foreground_colors = {
