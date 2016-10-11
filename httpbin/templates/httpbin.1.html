@@ -4,13 +4,14 @@
 <h2 id="ENDPOINTS">ENDPOINTS</h2>
 
 <ul>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_bells', n=5) }}"><code>/misbehaving/bells/:n</code></a> Sends n bells to your terminal</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_colorized_headers') }}" data-bare-link="true"><code>/misbehaving/colorized-headers</code></a> HTTP headers with terminal color codes</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_long_header', n=262144) }}"><code>/misbehaving/long-header/:n</code></a> Returns an excessively header of n bytes</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_null_byte') }}" data-bare-link="true"><code>/misbehaving/null-byte</code></a> HTTP header with a null byte</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_redirect_loop', n=0) }}" data-bare-link="true"><code>/misbehaving/redirect-loop/:n</code></a> Infinite redirect loop that counts upward</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_timeout') }}" data-bare-link="true"><code>/misbehaving/timeout</code></a> Does nothing until you timeout</li>
-<li class="misbehaving"><a href="{{ url_for('misbehaving_too_many_headers', n=16384) }}"><code>/misbehaving/too-many-headers/:n</code></a> Sends n HTTP headers</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_bells', n=5) }}"><code>/bells/:n</code></a> Sends n bells to your terminal</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_colorized_headers') }}" data-bare-link="true"><code>/colorized-headers</code></a> HTTP headers with terminal color codes</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_emoji') }}" data-bare-link="true"><code>/emoji</code></a> HTTP header with a delightful emoji</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_long_header', n=262144) }}"><code>/long-header/:n</code></a> Returns an excessively header of n bytes</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_null_byte') }}" data-bare-link="true"><code>/null-byte</code></a> HTTP header with a null byte</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_redirect_loop', n=0) }}" data-bare-link="true"><code>/redirect-loop/:n</code></a> Infinite redirect loop that counts upward</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_timeout') }}" data-bare-link="true"><code>/timeout</code></a> Does nothing until you timeout</li>
+<li class="misbehaving"><a href="{{ url_for('misbehaving_too_many_headers', n=16384) }}"><code>/too-many-headers/:n</code></a> Sends n HTTP headers</li>
 
 
 <li><a href="{{ url_for('view_landing_page') }}" data-bare-link="true"><code>/</code></a> This page.</li>

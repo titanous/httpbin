@@ -772,7 +772,18 @@ def misbehaving_colorized_headers():
     return response
 
 
-@app.route('/misbehaving/long-header/<int:n>')
+@app.route('/emoji')
+def misbehaving_emoji():
+    """Return an extremely long header of X bytes"""
+    response = make_response(jsonify({'X-Emoji': '\xf0\x9f\x92\xa9'}))
+
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['X-Emoji'] = '\xf0\x9f\x92\xa9'
+
+    return response
+
+
+@app.route('/long-header/<int:n>')
 def misbehaving_long_header(n):
     """Return an extremely long header of X bytes"""
     assert n > 0
@@ -780,12 +791,12 @@ def misbehaving_long_header(n):
     response = make_response(jsonify({'X-Long-Header': 'n' * n}))
 
     response.headers['Content-Type'] = 'application/json'
-    response.headers['X-Null-Byte'] = 'n' * n
+    response.headers['X-Long-Header'] = 'n' * n
 
     return response
 
 
-@app.route('/misbehaving/null-byte')
+@app.route('/null-byte')
 def misbehaving_null_byte():
     """Contains an X-Null-Byte header with a null byte inside it"""
     response = make_response(jsonify({'X-Null-Byte': 'null\x00byte'}))
@@ -796,7 +807,7 @@ def misbehaving_null_byte():
     return response
 
 
-@app.route('/misbehaving/redirect-loop/<int:n>')
+@app.route('/redirect-loop/<int:n>')
 def misbehaving_redirect_loop(n):
     """Redirect in perpetuity.  Unlike redirect_n_times, it counts upwards so that you can see where the UA stops"""
     assert n > -1
@@ -804,13 +815,13 @@ def misbehaving_redirect_loop(n):
     return redirect('/misbehaving/redirect-loop/' + str(n + 1))
 
 
-@app.route('/misbehaving/timeout')
+@app.route('/timeout')
 def misbehaving_timeout():
     return delay_response(pow(2, 32))
 
 
 
-@app.route('/misbehaving/too-many-headers/<int:n>')
+@app.route('/too-many-headers/<int:n>')
 def misbehaving_too_many_headers(n):
     """Creates a response with N X-Headers"""
     assert n > 0
